@@ -26,10 +26,16 @@ class PostgreSQLDemo
     {
         $query = "SELECT table_name FROM information_schema.tables "
             . "WHERE table_schema='public' AND table_type='$dbname';";
-        if ($result = pg_query($query)) {
-            echo $result;
+        if ($result = pg_query($this->cn, $query)) {
+            while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+                foreach ($line as $col_value) {
+                    echo "$col_value\t";
+                }
+                echo "\n";
+            }
+            pg_free_result($this->cn);
         } else {
-            echo 'La consulta fallo: ' . pg_last_error();
+            echo 'La consulta fallo\n';
         }
     }
 
