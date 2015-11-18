@@ -13,8 +13,8 @@ class PostgreSQLDemo
     public function printTables($host, $port, $dbname, $user, $password)
     {
         $cn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
-        $query = "SELECT table_name FROM information_schema.tables "
-            . "WHERE table_schema='public' AND table_type='$dbname';";
+        $query = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' "
+            . "AND table_type='BASE TABLE' AND table_catalog='$dbname'";
         if ($result = pg_query($cn, $query)) {
             while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
                 foreach ($line as $col_value) {
