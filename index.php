@@ -9,5 +9,5 @@ $dbname = "openbravo";
 $user = "postgres";
 $pass = "postgres";
 
-$demo = new PostgreSQLDemo($host, $port, $dbname, $user, $pass);
-$demo->printTables($dbname);
+$demo = new PostgreSQLDemo();
+$demo->printTables($host, $port, $dbname, $user, $pass);
